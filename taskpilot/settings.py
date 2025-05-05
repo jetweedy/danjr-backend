@@ -1,10 +1,6 @@
 import os
 import jetTools
 
-# Load .env config
-config = configparser.ConfigParser()
-config.read(os.path.join(BASE_DIR, '.env'))
-
 
 """
 Django settings for taskpilot project.
@@ -45,6 +41,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'tasks',
+    'rest_framework',
 ]
 
 MIDDLEWARE = [
