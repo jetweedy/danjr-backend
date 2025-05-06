@@ -21,6 +21,11 @@ mkdir danjr-backend
 python -m venv venv
 venv\Scripts\activate			<--
 pip install django djangorestframework mongoengine configparser
+
+python manage.py makemigrations
+python manage.py migrate
+python manage.py createsuperuser
+
 python manage.py runserver		<--
 http://localhost:8000/tasks/
 http://localhost:8000/admin/

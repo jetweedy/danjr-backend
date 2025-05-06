@@ -7,6 +7,7 @@ from rest_framework.response import Response
 from rest_framework import status
 from .models import Task
 from .serializers import TaskSerializer
+from rest_framework.permissions import IsAuthenticated
 
 
 class TaskDetail(APIView):
@@ -37,14 +38,20 @@ class TaskDetail(APIView):
 
 
 class TaskList(APIView):
+    permission_classes = [IsAuthenticated]
+    
     def get(self, request):
-        tasks = Task.objects()
+        tasks = Task.objects(username=request.user.username)
         serializer = TaskSerializer(tasks, many=True)
         return Response(serializer.data)
 
     def post(self, request):
         serializer = TaskSerializer(data=request.data)
         if serializer.is_valid():
-            task = serializer.save()
+            task_data = serializer.validated_data
+            task_data["username"] = request.user.username  # ← inject here
+            task = Task(**task_data)
+            task.save()
             return Response(TaskSerializer(task).data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
