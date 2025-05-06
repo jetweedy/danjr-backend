@@ -15,11 +15,26 @@ django-admin startproject taskpilot .
 
 ## Setup from this Repo:
 ``` 
+mkdir danjr
+cd danjr
+mkdir danjr-backend
 python -m venv venv
-venv\Scripts\activate
+venv\Scripts\activate			<--
 pip install django djangorestframework mongoengine configparser
+python manage.py runserver		<--
+http://localhost:8000/tasks/
+http://localhost:8000/admin/
 
-python manage.py runserver
+...
+
+cd ../
+npx create-react-app danjr-frontend
+cd danjr-frontend
+npm start 						<--
+
+...
+
+
 ``` 
 
 
