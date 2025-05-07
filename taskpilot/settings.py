@@ -29,7 +29,7 @@ SECRET_KEY = 'django-insecure-@=#h%t8c+y@i)ow8una7#j1pqi(k)=)s_@0j-+s!9)g_u5dm6$
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['api.danjrstack.com', 'ec2-3-143-205-139.us-east-2.compute.amazonaws.com']
+ALLOWED_HOSTS = ['localhost', 'api.danjrstack.com', 'ec2-3-143-205-139.us-east-2.compute.amazonaws.com']
 
 CSRF_TRUSTED_ORIGINS = [
     "https://api.danjrstack.com",
@@ -45,8 +45,9 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'tasks',
-    'rest_framework',
     'corsheaders',
+    'rest_framework',
+    'rest_framework.authtoken',
 ]
 
 MIDDLEWARE = [
@@ -62,12 +63,13 @@ MIDDLEWARE = [
 
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': [
-        'rest_framework.authentication.SessionAuthentication',
+        'rest_framework.authentication.TokenAuthentication',
     ],
     'DEFAULT_PERMISSION_CLASSES': [
         'rest_framework.permissions.IsAuthenticated',
     ]
 }
+
 
 ROOT_URLCONF = 'taskpilot.urls'
 

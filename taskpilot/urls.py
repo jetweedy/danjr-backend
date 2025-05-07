@@ -16,11 +16,15 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+from rest_framework.authtoken.views import obtain_auth_token
+from django.views.decorators.csrf import csrf_exempt
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('tasks/', include('tasks.urls')),
-    path('api-auth/', include('rest_framework.urls')),  # ← Add this
+    path('api-auth/', include('rest_framework.urls')),
+    path('api-token-auth/', csrf_exempt(obtain_auth_token)),
 ]
+
 
 
