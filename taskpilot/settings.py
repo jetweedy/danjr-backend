@@ -31,6 +31,9 @@ DEBUG = True
 
 ALLOWED_HOSTS = ['api.danjrstack.com', 'ec2-3-143-205-139.us-east-2.compute.amazonaws.com']
 
+CSRF_TRUSTED_ORIGINS = [
+    "https://api.danjrstack.com",
+]
 
 # Application definition
 
